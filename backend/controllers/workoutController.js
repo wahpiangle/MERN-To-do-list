@@ -1,10 +1,30 @@
 const Workout = require('../models/workoutModel');
 
 //get all workouts
-
+const getWorkouts = async (req, res) => {
+    try {
+        const workouts = await Workout.find({}); //find all workouts
+        res.status(200).json(workouts); //response's status is set to ok and converted to json
+    } catch (err) {
+        res.status(400).json({ error: err.message })
+    }
+}
 
 //get a single workout
+const getWorkout = async (req, res) => {
+    //route parameter at the end of the url
+    const { id } = req.params;
+    try {
+        const workout = await Workout.findById(id);
+        if (!workout) {
+            return res.status(404).json({ message: 'Workout not found' })
+        }
+        res.status(200).json(workout)
+    }catch(err){
+        res.status(400).json({ error: err.message })
+    }
 
+}
 
 //create new workout
 const createWorkout = async (req, res) => {
@@ -24,5 +44,7 @@ const createWorkout = async (req, res) => {
 
 
 module.exports = {
+    getWorkouts,
+    getWorkout,
     createWorkout,
 }
