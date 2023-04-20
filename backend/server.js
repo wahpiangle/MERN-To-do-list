@@ -15,7 +15,7 @@ app.use((req, res, next) => {
 app.use(express.json())
 
 //attaches workoutRoutes to /api/workout route
-app.use('/api/todo', workoutRoutes);
+app.use('/api/workouts', workoutRoutes);
 
 //connect to database
 mongoose.connect(process.env.MONGO_URI)

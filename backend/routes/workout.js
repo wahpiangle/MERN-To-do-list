@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { createWorkout } = require('../controllers/workoutController');
 
 //this allows the router to process a GET request to /api/workout
 router.get('/', (req, res)=>{
@@ -12,9 +13,7 @@ router.get('/:id', (req, res)=>{
 })
 
 //POST new workout
-router.post('/', (req, res)=>{
-    res.json({message: 'POST workout'});
-})
+router.post('/', createWorkout);
 
 //DELETE a workout
 router.delete('/:id', (req, res)=>{
