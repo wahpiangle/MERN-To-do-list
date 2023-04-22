@@ -4,7 +4,8 @@ const Workout = require('../models/workoutModel');
 //get all workouts
 const getWorkouts = async (req, res) => {
     try {
-        const workouts = await Workout.find({}); //find all workouts
+        const workouts = await Workout.find({}).sort({ updatedAt: -1 });
+
         res.status(200).json(workouts); //response's status is set to ok and converted to json
     } catch (err) {
         res.status(400).json({ error: err.message })

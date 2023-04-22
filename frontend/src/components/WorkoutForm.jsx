@@ -1,6 +1,9 @@
 import { useState } from "react"
+import { useWorkoutsContext } from "../hooks/useWorkoutsContext"
 
 export default function WorkoutForm() {
+    const { dispatch } = useWorkoutsContext()
+
     const [title, setTitle] = useState('')
     const [weight, setWeight] = useState('')
     const [reps, setReps] = useState('')
@@ -25,7 +28,7 @@ export default function WorkoutForm() {
             setWeight('')
             setReps('')
             setError(null)
-            console.log('New workout added!')
+            dispatch({ type: 'CREATE_WORKOUT', payload: json.workout})
         }
     }
 
@@ -45,7 +48,7 @@ export default function WorkoutForm() {
             <label className="text-[16px]">Weight (in kg):</label>
             <br/>
             <input
-                type="text"
+                type="number"
                 value={weight}
                 onChange={(e) => setWeight(e.target.value)}
                 className="my-2 p-1 min-w-[300px]"
@@ -55,7 +58,7 @@ export default function WorkoutForm() {
             <label className="text-[16px]">Reps:</label>
             <br/>
             <input
-                type="text"
+                type="number"
                 value={reps}
                 onChange={(e) => setReps(e.target.value)}
                 className="my-2 p-1 min-w-[300px]"
