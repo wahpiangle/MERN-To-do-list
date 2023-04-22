@@ -3,9 +3,9 @@ import NavBar from "./components/NavBar"
 
 export default function RootLayout() {
     return (
-        <div className="root-layout">
+        <div>
             <NavBar/>
-            <main className="bg-[#f1f1f1] py-8 px-36">
+            <main className="bg-[#f1f1f1] py-8 px-36 min-h-screen">
                 <Outlet />
             </main>
         </div>
