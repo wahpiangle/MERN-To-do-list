@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import WorkoutDetails from '../components/WorkoutDetails'
+import WorkoutForm from "../components/WorkoutForm"
 
 export default function Home() {
     const [workouts, setWorkouts] = useState(null)
@@ -16,12 +17,13 @@ export default function Home() {
     },[])
 
     return (
-        <div>
-            <div>
+        <div className="flex gap-12 justify-between">
+            <div className="min-w-[800px]">
                 {workouts && workouts.map((workout) => (
                     <WorkoutDetails key={workout._id} workout={workout} />
                 ))}
             </div>
+            <WorkoutForm />
         </div>
     )
 }
