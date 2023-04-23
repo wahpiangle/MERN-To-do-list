@@ -21,7 +21,7 @@ app.use('/api/workouts', workoutRoutes);
 
 //send a message to the main route for the server page
 app.get('/', (req, res) => {
-    res.send('hello world');
+    res.send('API is running');
 });
 
 //connect to database
