@@ -19,7 +19,10 @@ app.use(express.json())
 //attaches workoutRoutes to /api/workout route
 app.use('/api/workouts', workoutRoutes);
 
-app.send('hello world');
+//send a message to the main route
+app.get('/', (req, res) => {
+    res.send('hello world');
+});
 
 //connect to database
 mongoose.connect(process.env.MONGO_URI)
