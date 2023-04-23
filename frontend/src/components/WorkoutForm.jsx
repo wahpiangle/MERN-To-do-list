@@ -8,6 +8,7 @@ export default function WorkoutForm() {
     const [weight, setWeight] = useState('')
     const [reps, setReps] = useState('')
     const [error, setError] = useState(null)
+    const [emptyFields, setEmptyFields] = useState([])
 
     const handleSubmit = async(e) => {
         e.preventDefault()
@@ -20,14 +21,16 @@ export default function WorkoutForm() {
             }
         })
         const json = await response.json()
-        if (response.ok) {
+        if (!response.ok) {
             setError(json.error)
+            setEmptyFields(json.emptyFields)
         }
         if (response.ok){
             setTitle('')
             setWeight('')
             setReps('')
             setError(null)
+            setEmptyFields([])
             dispatch({ type: 'CREATE_WORKOUT', payload: json.workout})
         }
     }
@@ -41,7 +44,7 @@ export default function WorkoutForm() {
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="my-2 p-1 min-w-[300px]"
+                className={`my-2 p-1 min-w-[300px] ${emptyFields.includes('title') ? 'border-red-500' : ''}`}
             />
             <br/>
 
@@ -51,7 +54,7 @@ export default function WorkoutForm() {
                 type="number"
                 value={weight}
                 onChange={(e) => setWeight(e.target.value)}
-                className="my-2 p-1 min-w-[300px]"
+                className={`my-2 p-1 min-w-[300px] ${emptyFields.includes('title') ? 'border-red-500' : ''}`}
             />
             <br/>
 
@@ -61,11 +64,11 @@ export default function WorkoutForm() {
                 type="number"
                 value={reps}
                 onChange={(e) => setReps(e.target.value)}
-                className="my-2 p-1 min-w-[300px]"
+                className={`my-2 p-1 min-w-[300px] ${emptyFields.includes('title') ? 'border-red-500' : ''}`}
             />
             <br/>
             <button className="bg-green-500 text-white px-4 py-2 mt-4 rounded-lg">Add Workout</button>
-            {error && <div>{error}</div>}
+            {error && <div className="bg-red-200 border-red-400 border-2 mt-4 rouned-lg px-4 py-2">{error}</div>}
         </form>
     )
 }

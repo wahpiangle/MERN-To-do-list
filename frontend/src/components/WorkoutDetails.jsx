@@ -1,5 +1,6 @@
 import { ImCross } from 'react-icons/im'
 import { useWorkoutsContext } from '../hooks/useWorkoutsContext'
+import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 
 export default function WorkoutDetails({ workout }) {
     const { dispatch } = useWorkoutsContext()
@@ -20,7 +21,7 @@ export default function WorkoutDetails({ workout }) {
                 <h1 className="font-bold text-[24px] text-green-500">{workout.title}</h1>
                 <p><span className="font-semibold">Weight (kg): </span>{workout.weight}</p>
                 <p><span className="font-semibold">Reps: </span>{workout.reps}</p>
-                <p>{workout.createdAt}</p>
+                <p>{formatDistanceToNow(new Date(workout.createdAt), { addSuffix:true })}</p>
             </div>
             <ImCross className="text-red-500 text-md cursor-pointer" onClick={handleClick}/>
         </div>
