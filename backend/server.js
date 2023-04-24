@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 const workoutRoutes = require('./routes/workout');
+const userRoutes = require('./routes/user');
 
 const app = express();
 app.use(cors())
@@ -18,6 +19,7 @@ app.use(express.json())
 
 //attaches workoutRoutes to /api/workout route
 app.use('/api/workouts', workoutRoutes);
+app.use('/api/user', userRoutes);
 
 //send a message to the main route for the server page
 app.get('/', (req, res) => {
