@@ -19,6 +19,7 @@ app.use(express.json())
 
 //attaches workoutRoutes to /api/workout route
 app.use('/api/workouts', workoutRoutes);
+
 app.use('/api/users', userRoutes);
 
 //send a message to the main route for the server page
