@@ -11,7 +11,6 @@ export default function NavBar() {
             <nav className="flex items-center mr-4">
                 <div className="font-semibold">
                     <Link to="/login" className="mr-4">Login</Link>
-                    <Link to="/signup">Sign Up</Link>
                 </div>
             </nav>
         </header>

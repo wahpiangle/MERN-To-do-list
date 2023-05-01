@@ -20,7 +20,7 @@ export default function Home() {
     },[])
 
     return (
-        <div className="flex gap-12 justify-between">
+        <div className="flex gap-12 justify-between flex-wrap">
             <div className="min-w-[800px]">
                 {workouts && workouts.map((workout) => (
                     <WorkoutDetails key={workout._id} workout={workout} />
