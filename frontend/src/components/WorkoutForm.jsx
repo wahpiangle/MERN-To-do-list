@@ -36,7 +36,7 @@ export default function WorkoutForm() {
     }
 
     return(
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="mx-auto">
             <h1 className="font-bold text-[24px] mb-4">Add a New Workout</h1>
             <label className="text-[16px]">Exercise Name:</label>
             <br/>

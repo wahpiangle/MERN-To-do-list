@@ -16,7 +16,7 @@ export default function WorkoutDetails({ workout }) {
         }
     }
     return (
-        <div className="bg-white mb-8 py-4 px-12 rounded-lg flex justify-between items-center">
+        <div className="bg-white mb-8 py-4 px-10 mx-auto rounded-lg flex justify-between items-center">
             <div>
                 <h1 className="font-bold text-[24px] text-green-500">{workout.title}</h1>
                 <p><span className="font-semibold">Weight (kg): </span>{workout.weight}</p>

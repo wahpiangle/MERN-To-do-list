@@ -6,7 +6,6 @@ import WorkoutForm from "../components/WorkoutForm"
 
 export default function Home() {
     const { workouts, dispatch } = useWorkoutsContext()
-
     useEffect(() => {
         const fetchWorkouts = async () => {
             const response = await fetch('https://workout-buddy-api-smgt.onrender.com/api/workouts');
@@ -20,8 +19,8 @@ export default function Home() {
     },[])
 
     return (
-        <div className="flex gap-12 justify-between flex-wrap">
-            <div className="min-w-[800px]">
+        <div className="flex gap-12 2xl:justify-between justify-center flex-wrap">
+            <div className={`${workouts !== null ? `min-w-[600px] w-[70%]` :""}`}>
                 {workouts && workouts.map((workout) => (
                     <WorkoutDetails key={workout._id} workout={workout} />
                 ))}
