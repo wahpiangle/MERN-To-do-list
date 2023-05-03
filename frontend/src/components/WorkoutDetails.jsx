@@ -1,13 +1,31 @@
 import { ImCross } from 'react-icons/im'
 import { useWorkoutsContext } from '../hooks/useWorkoutsContext'
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
+import { useAuthContext } from '../hooks/useAuthContext'
 
 export default function WorkoutDetails({ workout }) {
     const { dispatch } = useWorkoutsContext()
 
+    const {state} = useAuthContext()
+    const { user } = state
+
     const handleClick = async() => {
-        const response = await fetch(`https://workout-buddy-api-smgt.onrender.com/api/workouts/${workout._id}`, {
-            method: 'DELETE'
+        if(!user){
+            return
+        }
+
+        // const response = await fetch(`https://workout-buddy-api-smgt.onrender.com/api/workouts/${workout._id}`, {
+        //     method: 'DELETE',
+        //     headers:{
+        //         'Authorization': `Bearer ${user.token}`
+        //     }
+        // })
+
+        const response = await fetch(`http://localhost:4000/api/workouts/${workout._id}`, {
+            method: 'DELETE',
+            headers:{
+                'Authorization': `Bearer ${user.token}`
+            }
         })
         const json = await response.json()
 

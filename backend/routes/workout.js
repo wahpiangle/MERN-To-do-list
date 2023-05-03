@@ -1,6 +1,10 @@
 const express = require('express');
-const router = express.Router();
 const { createWorkout, getWorkouts, getWorkout, deleteWorkout, updateWorkout } = require('../controllers/workoutController');
+const requireAuth = require('../middleware/requireAuth');
+const router = express.Router();
+
+//to fire requireAuth middleware before all the routes
+router.use(requireAuth)
 
 //this allows the router to process a GET request to /api/workout
 router.get('/', getWorkouts);

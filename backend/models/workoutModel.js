@@ -15,6 +15,10 @@ const workoutSchema = new Schema({
     weight:{
         type: Number,
         required: true
+    },
+    user_id:{
+        type: String,
+        required: true
     }
 }, {timestamps: true});
 //timestamps adds createdAt and updatedAt fields to the document

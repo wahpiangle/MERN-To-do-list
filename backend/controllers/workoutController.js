@@ -3,8 +3,9 @@ const Workout = require('../models/workoutModel');
 
 //get all workouts
 const getWorkouts = async (req, res) => {
+    const user_id = req.user._id;
     try {
-        const workouts = await Workout.find({}).sort({ updatedAt: -1 });
+        const workouts = await Workout.find({ user_id }).sort({ updatedAt: -1 });
 
         res.status(200).json(workouts); //response's status is set to ok and converted to json
     } catch (err) {
@@ -14,6 +15,9 @@ const getWorkouts = async (req, res) => {
 
 //get a single workout
 const getWorkout = async (req, res) => {
+    const user_id = req.user._id;
+
+
     //route parameter at the end of the url
     const { id } = req.params;
     try {
@@ -42,7 +46,9 @@ const createWorkout = async (req, res) => {
     }
 
     try {
-        const workout = await Workout.create({ title, reps, weight }); //create instance of Workout model
+        //assign user id to the workout
+        const user_id = req.user._id;
+        const workout = await Workout.create({ title, reps, weight, user_id }); //create instance of Workout model
         res.status(200).json({ workout }); //response's status is set to ok and converted to json
     } catch (err) {
         res.status(400).json({ error: err.message, emptyFields })
